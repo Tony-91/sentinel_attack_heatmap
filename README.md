@@ -146,8 +146,58 @@
 
 ![](images/S10B.png)
 
+## Step 11A: Retrieve Powershell script: [Script](https://github.com/joshmadakor1/Sentinel-Lab/blob/main/Custom_Security_Log_Exporter.ps1 "Script")
+- Open Powershell ISE
+- For convenience you can copy/paste the code into a new ps1 file and save it to the desktop of the **honeypot-vm** (remember to see vm IP at the top)
+- You will also need an API key, get here: [API key](https://ipgeolocation.io/ "API key")
+- Create an account and log in
+- Copy and paste *your* API in your Powershell script `$API_KEY = “_your API key_”`
+- Save file.
 
+![](images/S11A.png)
 
+> Quick explanation of script: the script will parse through the security event logs (Audit Failure/failed login logs we looked at earlier) and grab IP information. The script then **passes** the IP thorough the API and correlates the info into longitude and latitude, giving us specific geographical information. 
+
+## Step 11B: Powershell script (cont.)
+- Test and run the script pass pressing green play button at top of window 
+- You should receive purple logs indicating latitude / latitude of failed logins (some sample logs and some log when we failed to log in)
+> NOTE: Keep Powershell script running in the backgroup. We need to continously feed our log repository information.
+
+![](images/S11B.png)
+
+## Step 12A: Create custom geolocation log in Log Analytics Workspace.
+- This log will use IP information to give us specific geolocation to our create map down the line.
+- Search and click Log Analytics Workspace > law-honeypot1 > custom logs > + Add custom log
+- We need to upload a sample log to “train” log analytics on what to look for.
+
+![](images/S12A.png)
+
+## Step 12B: Custom geolocation log (cont.)
+- Our sample logs are in our **honeypot-vm**.
+- **In our honeypot-vm**, search RUN > search C:\ProgramData\ and open the failed_rdp file.
+- Our failed RDP logins are sent to this txt file, open and copy all the sample logs. 
+- Back on our **host machine**, open notes and paste our sample logs.
+- Save the file in a log or txt format and upload it in the *Create a custom log* page. Click next and you should see the sample logs.
+
+![](images/S12B.png)
+
+## Step 12C: Click next and under Collection Paths > under Type > Windows, under Path write C:\ProgramData\failed_rdp.log
+
+![](images/S12C.png)
+
+## Step 12E: Click next > under Details > Custom log name write FAILED_RDP_WITH_GEO (CL will be added to the end)
+- Click next > Create >Review + Create
+- Let’s go back to log analytics and check if Azure is connected and listening to our vm.
+
+![](images/S12E.png)
+
+## Step 12F: Secure connection between honeypot-vm and log analytics 
+- Under law-honeypot1 > General > Logs > search SecurityEvent and click blue Run button.
+- Give it a moment, and voila! It returns the same security logs window from our honeypot-vm’s Event Viewer.
+- Give it some time and search our custom: `FAILED_RDP_WITH_GEO_CL will` it will return our sample logs.
+
+![](images/S12F.png)
+ 
 
 
 
