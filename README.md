@@ -39,7 +39,7 @@
 - Edit the virtual machine as follows:
 - Click create new under resource group and name it honeypotlab (this resource group is a logical grouping of similar resources)
 - Name the virtual machine: honeypot-vm
-- Under region select: (US) East US 2 (**screenshot is incorrect; choose East US 2**)
+- Under region select: (US) East US 2 
 - Under Image select: Windows 10 pro, version 21H2 - Gen2
 - Availability zone: Zones 2 (**screenshot is incorrect; choose Zones 2**)
 - Under size: Standard_D2as_v4 - 2 vcpus, 8 GiB memory
@@ -63,6 +63,25 @@
 
 > The point of this new firewall rule is to allow any traffic from anywhere.  This will make our virtual machine very discoverable. 
 
+## Step 5: Create Log Analytics workspace
+- As we wait for our vm to deploy, go back to the search bar and search and click *Log Analytics workspaces*
+
+![](images/S5%20.png)
+
+> The purpose  of this workspace is to ingest logs from our vm. Additionally, we will create our own custom logs that will contain geographic information on who is attacking us. Later, our MS SIEM will feed logs into here.
+
+- Select the blue Create log analytics workspace button
+- Under the Basics tab:
+- Resource source group: honeypot—lab
+- Name: law-honeypot1
+- Region: West US 2 (**screenshot is incorrect; choose West US 2**)
+- Click Review + Create and click Create
+
+## Step 6A: Enable log collection from vm to log workspace
+- Back in the search bar search and click *Microsoft Defender for Cloud*
+- Once on the dashboard click > Environment Settings > (through the drop down menus) > law-honeypot1
+
+![](images/S6A.png)
 
 
 
