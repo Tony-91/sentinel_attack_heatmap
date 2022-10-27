@@ -198,7 +198,14 @@
 
 ![](images/S12F.png)
  
+## Step 13A: Overview: Extract geo-data from the RawData of our sample logs.
+- Take a look at our sample logs in our FAILED_RDP_WITH_GEO_CL.
+- In the RawData columns we find information like longitude, latitude, destination host, etc.
+- We need to categorize longitude, latitude, destination host, etc. **values** from the raw data before we can obtain  geolocation data.
+- It sounds a bit abstract now, but bare with me.
+> NOTE: If you step away and come back to this lab after a day or two make sure to change the *Time range* accordingly. 
 
+![](images/S13A.png)
 
 
 
