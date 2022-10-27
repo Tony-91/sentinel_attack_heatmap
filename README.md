@@ -5,6 +5,8 @@
 1. Provisioning and deprovisioning virtual enviornments within Azure.
 2. Third-party API calls.
 3. Security Information and Event Management - log anaylyis and visualization. 
+> NOTE: Since we will utilize RDP you will need a Windows host machine - a Windows virtual machine will also work.
+
 
 
 
@@ -12,6 +14,7 @@
 * Microsft Azure - a cloud computing service operated by Microsoft for application management via Microsoft-managed data centers
 * Services within Azure: Log Analytics Workspace and Sentinel (Mircosoft's SIEM)
 * Powershell 
+* Remote desktop protocol
  
 ### Overview:
 ![](images/azure.png)
@@ -48,7 +51,7 @@
 
 ![](images/S3.png)
 
-## Step 4:  Turning firewall off: Click > Next: Disk but leave it as is, click to continue to Networking
+## Step 4: Click > Next: Disk but leave it as is, click to continue to Networking
 -  Under *NIC network security group* select > Advance and under *Configure network security group* select Create new
 - You should see a default rule (something like 1000: default-allow-rdp), click the three dots to the right of it and **remove** it.
 - Select *Add an inbound rule* 
@@ -82,6 +85,68 @@
 - Once on the dashboard click > Environment Settings > (through the drop down menus) > law-honeypot1
 
 ![](images/S6A.png)
+
+## Step 6B: Under law-honeypot1 select *Defender Plans* and enable *Servers* ON and *SQL servers on machines* OFF. With *Cloud Security Posture Management* ON. Hit save.
+- Under *Data Collection* tab select *All Events*. Hit save.
+
+![](images/S6B.png)
+
+## Step 7: connect Log Analytics workspace to our vm
+- On the search bar select Log Analytics workspace
+- Select law-honeypot1 > Virtual Machines > honeypot-vm
+- Click **connect**, after clicking honeypot-vm
+- It will take some time to successfully connect; you should get a message confirming connection.
+
+![](images/S7.png)
+
+## Step 8: Add Microsoft Sentinel to our workspace 
+- In search bar find **Microsoft Sentinel**
+- Click Create Microsoft Sentinel > select law-honeypot1 > Add
+- This will also take some time
+
+![](images/S8.png)
+
+## Step 9A: Log into vm through host machine
+- Through the search bar, find our honeypot-vm > copy the Public IP address (highlighted here on the right)
+
+![](images/S9A.png)
+
+## Step 9B: RDP from host Windows machine
+- On your Windows machine (Windows vm will also work) search and open *Remote Desktop Connection*
+- Paste your Azure IP into *Computer*
+- Before connecting, click Display and scale down display configuration for easier viewing
+- Click connect
+- In the *Enter your credentials* window click more choices > Use a different account 
+- Enter invalid credentials tin order to generate a log for later viewing.
+- Then, enter your credentials we created for our Azure vm in Step 3, click OK.
+- Accept the certificate warning
+- You should be logged into the vm when you see “Remote Desktop Connection” at the top of the screen.
+
+![](images/S9B.png)
+
+## Step 10A: Set up vm and explore 
+- Click NO to all privacy settings and Accept
+- Set up Edge
+- Search and click *Event Viewer*
+- Click Windows Logs > Security and find the Audit Failure log (our failed login attempt; if you don’t see it at first filter current log by “Audit Failure” found to the left)
+
+![](images/S10A.png)
+
+> The Source Network Address will represent the attacker’s IPs and eventually where on Earth they are attacking us!
+> But in order to do this we need to send this network address to a third party API… but more on that later.
+
+Step 10B: Turn off firewall to make vm more susceptible to attack 
+- Open command prompt on your **host** machine and try to ping the Azure vm - it shouldn’t work!
+- Search and open wf.msc on Azure vm - *remember* to keep an eye on vm IP at the very top to confirm you’re in the vm and NOT in on your host to avoid confusion.
+- Click Windows Defender Firewall Properties near the middle of the page
+- Under the Domain Profile > Firewall state: OFF
+- Under Private Profile > Firewall state: OFF
+- Under Public Profile > Firewall state: OFF
+- Try to ping vm again from your **host** machine - this should now work!
+
+![](images/S10B.png)
+
+
 
 
 
