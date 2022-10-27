@@ -135,7 +135,7 @@
 > The Source Network Address will represent the attacker’s IPs and eventually where on Earth they are attacking us!
 > But in order to do this we need to send this network address to a third party API… but more on that later.
 
-Step 10B: Turn off firewall to make vm more susceptible to attack 
+## Step 10B: Turn off firewall to make vm more susceptible to attack 
 - Open command prompt on your **host** machine and try to ping the Azure vm - it shouldn’t work!
 - Search and open wf.msc on Azure vm - *remember* to keep an eye on vm IP at the very top to confirm you’re in the vm and NOT in on your host to avoid confusion.
 - Click Windows Defender Firewall Properties near the middle of the page
