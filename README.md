@@ -151,7 +151,7 @@
 - For convenience you can copy/paste the code into a new ps1 file and save it to the desktop of the **honeypot-vm** (remember to see vm IP at the top)
 - You will also need an API key, get here: [API key](https://ipgeolocation.io/ "API key")
 - Create an account and log in
-- Copy and paste *your* API in your Powershell script `$API_KEY = “_your API key_”`
+- Copy and paste *your* API key in your Powershell script `$API_KEY = “_your API key_”`
 - Save file.
 
 ![](images/S11A.png)
