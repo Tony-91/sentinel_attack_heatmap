@@ -1,6 +1,6 @@
 ![](images/Azurelogo.jpeg)
 
-# SIEM TUTORIAL | Microsoft Sentinel HeatMAP with LIVE CYBER ATTACKS (put this on your resume)
+# SIEM TUTORIAL | Microsoft Sentinel Map with LIVE CYBER ATTACKS (put this on your resume)
 ### Learning Objectives:
 1. Provisioning and deprovisioning virtual enviornments within Azure.
 2. Third-party API calls.
