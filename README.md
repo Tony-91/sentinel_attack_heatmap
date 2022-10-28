@@ -273,9 +273,43 @@
 
 > The last two lines will ensure we DON’T receive anything with sample host or anything blank.
 
+## Step 14B: Threat visualization
+- Click Run Query
+- Troubleshooting: if you run into any issue with a CF (custom field) try removing the troubling CF from the query and run search again.
+- From the visualization drop box select *Map*
+- In map settings > layout setting (on the right of screen):
+- Under Location Info Using Select longitude/latitude (if longitude/latitude gives you trouble select *country or region*, and vice versa)
+- Under latitude: latitude_CF
+- Under longitude: longitude_CF
+- Scroll down to find Metric Settings:
+- Under Metric Label select label_CF
+- Metric Value: event_count
+- Hit Apply …
+- On the map you see where you’re being attacked from!
+- You might only see the failed logins you made, but after some time refresh and look again.
+- Pretty rad - **if you take a look at the actual logs you can see source IP, time, country, user name and other details!**
+- Remember too, these logs are only reporting back failed RDP attempts… who knows what other attacks are being attempted.  
 
+![](images/S14B.png)
 
+## Step 14C: Finish/save threat visualization 
+- Hit > save and close
+- Hit the floppy disk at the top to save the map.
+- Title: Failed RDP World Map > Location: West US 2 > Resource group: honeypot-lab > click Apply
+- And we’re done! - by now people should be attacking your vm, congrats!
+- You can hit the refresh icon near the top of the map (**make sure Powershell script is running**) to load more logs into the map
+- Also, you can click Auto refresh ON to refresh every so often.
 
+![](images/S14C.png)
+
+## FINAL STEP: Deprovision resources 
+- Once you are done with the lab delete the resources, otherwise they will eat away from your free credit (deprovisioning is also a good thing to keep in mind at the enterprise level)
+- Search and click Resource group > honeypot-lab > Delete resource group
+- Type the name  *honeypot-lab* to confirm deletion 
+
+![](images/AzureMmap.png)
+
+> And there you have it, you have successfully mapped out the location of your RDP attackers using a honey pot vm.
 
 
 
