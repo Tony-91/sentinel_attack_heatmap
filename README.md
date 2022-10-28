@@ -207,7 +207,15 @@
 
 ![](images/S13A.png)
 
+## Step 13B: Extract and categorize data from sample log
+- Right-click the first log you see in the search results and click Extract Fields from FAILED_RDP_WITH_GEO_CL
+- Under Main Example highlight the latitude VALUE - not the word ‘latitude’ itself
+- A window will automatically pop-up
+- Under Field value type latitude and under Filed type choose numeric, click Extract
+- To the right, check that the SIEM is selecting the correct values on each sample log.
+- Click save extraction. 
 
+![](images/S13B.png)
 
 
 
