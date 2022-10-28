@@ -253,5 +253,34 @@
 
 ![](images/S13D.png)
 
+> A couple of notes before moving on: **make sure our Powershell script log_exporter.log is running**. The script will continue to feed our SIEM with fresh new logs. 
+
+> After extracting the data from our logs, you may or may not already see people trying to RDP into our vm (!). Give it some time.
+
+## Step 14A : Set up our map within Microsoft Sentinel 
+- Next, we will map out our logs within Sentinel with the extracted data - to see where in the world is our vm is being attacked from.
+- Search and click Microsoft Sentinel > choose law-honeypot1 and under Threat management choose *Workbooks* > click + Add workbook
+- Click edit > click the “ … “ on the right side on the screen and remove the two widgets.
+- Click Add > Add query and paste the following into the query:
+
+`FAILED_RDP_WITH_GEO_CL | summarize event_count=count() by sourcehost_CF, latitude_CF, longitude_CF, country_CF, label_CF, destinationhost_CF
+| where destinationhost_CF != "samplehost"
+| where sourcehost_CF != ""`
+
+![](images/S14A.png)
+
+> This will parse through the failed RDP’s logs and return to us location information through our custom fields we created.
+
+> The last two lines will ensure we DON’T receive anything with sample host or anything blank.
+
+
+
+
+
+
+
+
+
+
 
 
