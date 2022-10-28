@@ -217,7 +217,41 @@
 
 ![](images/S13B.png)
 
+> This is an important step because we are ‘training’ our SIEM what to look out for. 
 
+## Step 13C: Extracting more data from sample log
+- Same process, different values.
+- Right-click the same log > Extract files from… 
+- Now this time highlight *longitude value*
+- Field value: longitude > filed type: numeric, click Extract
+- Inside our search results it looks like our SIEM needs some help because it highlighted latitude when we were asking for LONGITUDE (bad siem).
+- Worry not: this is where some corrective training comes into play.
+- Click the little pencil within a circle icon at the top-right of the incorrect search result.
+- Click modify this highlight and highlight the **longitude** value once more.
+- Again: Field value: longitude > filed type: numeric, click Extract
+- Take a look at the search result, it should now highlight the correct longitude value.
+- Continue to train our SIEM and correct a few more search results.
+
+![](images/S13C.png)
+
+## Step 13D: Even more data extraction from sample log!
+- The same process to when we extracted latitude and longitude values.
+- Remember to highlight the *vaules* and to select the correct field value and field type
+- Right-click the same log > Extract files from… 
+- Highlight destination host value > filed title: destinationhost > type: text 
+- Re-select vales if needed and save
+- Remember to save after each selection - you can’t select more than one value at a time
+- Highlight user name value > filed title: username > type: text 
+- Highlight source host value > filed title: sourcehost > type: text 
+- Highlight state value > filed title: state > type: text 
+- Highlight country value > filed title: country > type: text 
+- Highlight label value > filed title: label > type: text 
+- Highlight timestamp value > filed title: timestamp > type: Date/Time
+- Hit save extraction for the final time and we’re done extracting!
+- Under setting columns to the left click Custom Logs > Custom fields
+- Your custom fields we just made should look something like this:
+
+![](images/S13D.png)
 
 
 
