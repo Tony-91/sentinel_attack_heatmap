@@ -185,13 +185,13 @@
 
 ![](images/S12C.png)
 
-## Step 12E: Click next > under Details > Custom log name write FAILED_RDP_WITH_GEO (CL will be added to the end)
+## Step 12D: Click next > under Details > Custom log name write FAILED_RDP_WITH_GEO (CL will be added to the end)
 - Click next > Create >Review + Create
 - Let’s go back to log analytics and check if Azure is connected and listening to our vm.
 
 ![](images/S12E.png)
 
-## Step 12F: Secure connection between honeypot-vm and log analytics 
+## Step 12E: Secure connection between honeypot-vm and log analytics 
 - Under law-honeypot1 > General > Logs > search SecurityEvent and click blue Run button.
 - Give it a moment, and voila! It returns the same security logs window from our honeypot-vm’s Event Viewer.
 - Give it some time and search our custom: `FAILED_RDP_WITH_GEO_CL will` it will return our sample logs.
