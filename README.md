@@ -2,7 +2,7 @@
 
 # SIEM TUTORIAL | Microsoft Sentinel Map with LIVE CYBER ATTACKS (put this on your resume)
 ### Learning Objectives:
-1. Provisioning and deprovisioning virtual enviornments within Azure.
+1. Provisioning and deprovisioning virtual environments within Azure.
 2. Third-party API calls.
 3. Security Information and Event Management - log anaylyis and visualization. 
 > NOTE: Since we will utilize RDP you will need a Windows host machine - a Windows virtual machine will also work.
